@@ -32,4 +32,13 @@ NAME               READY   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment   1/1     1            1           54s
 
 10. craete the service nginx-service.yaml
-11. 
+cloud [ ~ ]$ kubectl apply -f nginx-service.yaml
+service/nginx-service created
+
+11. verify the status of service 
+cloud [ ~ ]$ kubectl get svc 
+cloud [ ~ ]$ kubectl get svc 
+NAME            TYPE           CLUSTER-IP   EXTERNAL-IP      PORT(S)        AGE
+kubernetes      ClusterIP      10.0.0.1     <none>           443/TCP        15m
+nginx-service   LoadBalancer   10.0.45.26   20.236.154.204   80:31602/TCP   2m20s
+12. Once the external IP is available, access your Nginx deployment by visiting http://<external-ip>. This should display the Nginx welcome page.
