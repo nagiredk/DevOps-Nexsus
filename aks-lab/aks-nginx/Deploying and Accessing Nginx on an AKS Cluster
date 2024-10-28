@@ -1,0 +1,22 @@
+1. Log in to the Azure portal, switch to Cloud Shell, and then select Bash Environment.
+2. Choose the storage account where you want to store changes and specify the subscription for the AKS cluster.
+3. Identify the resource group name and copy it for later use. If the resource group doesn't exist, create a new one.
+
+4. Create the cluster by using the following command:
+
+az aks create \
+--resource-group 1-96c95867-playground-sandbox \
+--name  my-nginx-cluster \
+--node-count 1 \
+--generate-ssh-keys \
+--node-vm-size Standard_B2s \
+--enable-managed-identity
+
+5. check the cluster status 
+cloud [ ~ ]$ az aks list --output table
+Name              Location        ResourceGroup                  KubernetesVersion    CurrentKubernetesVersion    ProvisioningState    Fqdn
+----------------  --------------  -----------------------------  -------------------  --------------------------  -------------------  ------------------------------------------------------------------------
+my-nginx-cluster  southcentralus  1-96c95867-playground-sandbox  1.29                 1.29.9                      Succeeded            my-nginx-c-1-96c95867-playg-80ea84-59j6xrzf.hcp.southcentralus.azmk8s.io
+
+6. create the deployment nginx-deployment.yaml
+7 run kubectl apply -f nginx-deployment.yaml 
