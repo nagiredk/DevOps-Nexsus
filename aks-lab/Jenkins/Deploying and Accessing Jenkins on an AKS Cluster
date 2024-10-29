@@ -6,7 +6,7 @@
 
 az aks create \
 --resource-group 1-96c95867-playground-sandbox \
---name  my-nginx-cluster \
+--name  my-jenkins-cluster \
 --node-count 1 \
 --generate-ssh-keys \
 --node-vm-size Standard_B2s \
@@ -14,30 +14,20 @@ az aks create \
 
 5. check the cluster status 
 cloud [ ~ ]$ az aks list --output table
-Name              Location        ResourceGroup                  KubernetesVersion    CurrentKubernetesVersion    ProvisioningState    Fqdn
-----------------  --------------  -----------------------------  -------------------  --------------------------  -------------------  ------------------------------------------------------------------------
-my-nginx-cluster  southcentralus  1-96c95867-playground-sandbox  1.29                 1.29.9                      Succeeded            my-nginx-c-1-96c95867-playg-80ea84-59j6xrzf.hcp.southcentralus.azmk8s.io
 
 6. get the credentials from cluster 
-cloud [ ~ ]$ az aks get-credentials --name my-nginx-cluster --resource-group 1-96c95867-playground-sandbox
-Merged "my-nginx-cluster" as current context in /home/cloud/.kube/config
+az aks get-credentials --name my-nginx-cluster --resource-group 1-96c95867-playground-sandbox
 
-7. create the deployment nginx-deployment.yaml
-8. cloud [ ~ ]$ kubectl apply -f nginx-deployment.yaml 
-deployment.apps/nginx-deployment created
-
+7. create the deployment jenkins-deployment.yaml
+8. kubectl apply -f jenkins-deployment.yaml 
 9.verify the deployment status 
 kubectl get deployments
 
+10. craete the service jenkins-service.yaml
+cloud [ ~ ]$ kubectl apply -f jenkins-service.yaml
 
-10. craete the service nginx-service.yaml
-cloud [ ~ ]$ kubectl apply -f nginx-service.yaml
-service/nginx-service created
 
 11. verify the status of service 
 cloud [ ~ ]$ kubectl get svc 
 cloud [ ~ ]$ kubectl get svc 
-NAME            TYPE           CLUSTER-IP   EXTERNAL-IP      PORT(S)        AGE
-kubernetes      ClusterIP      10.0.0.1     <none>           443/TCP        15m
-nginx-service   LoadBalancer   10.0.45.26   20.236.154.204   80:31602/TCP   2m20s
-12. Once the external IP is available, access your Nginx deployment by visiting http://<external-ip>. This should display the Nginx welcome page.
+12. Once the external IP is available, access your Nginx deployment by visiting http://<external-ip>:8080. This should display the Nginx welcome page.
