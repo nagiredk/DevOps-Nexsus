@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-org/your-repo.git'
+                git branch: 'terraform', url: 'https://github.com/nagiredk/DevOps-Nexsus.git'
             }
         }
 
