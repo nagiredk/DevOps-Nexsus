@@ -1,0 +1,18 @@
+SkillTrackerApp/
+├── src/
+│   └── com/
+│       └── skilltracker/
+│           ├── controller/
+│           │   ├── RegisterServlet.java
+│           │   └── LoginServlet.java
+│           ├── dao/
+│           │   ├── UserDAO.java
+│           │   └── UserDAOImpl.java
+│           └── model/
+│               └── User.java
+├── WebContent/
+│   ├── WEB-INF/
+│   │   ├── lib/ (for JARs)
+│   │   └── web.xml
+│   ├── register.jsp
+│   └── login.jsp
