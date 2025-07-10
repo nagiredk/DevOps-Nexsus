@@ -1,1 +1,0 @@
-# tech-nexsus-devops
